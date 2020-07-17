@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const hbs = require('hbs');
+// Helpers
+require('./hbs/helpers');
+const port = process.env.PORT || 3000;
 
 
 // Aplicamos un midelware
@@ -10,8 +13,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/parciales');
 
-// Helpers
-require('./hbs/helpers');
+
 
 
 
@@ -36,6 +38,6 @@ app.get('/about', (req, res) => {
 // });
 
 
-app.listen(3000, () => {
-    console.log('Escuchando peticiones en el puerto 3000');
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Escuchando peticiones en el puerto ${port}`);
 });
